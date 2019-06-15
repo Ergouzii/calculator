@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Result from './Result';
 import KeyPad from './KeyPad';
-import ClearBtn from './ClearBtn'
 
 class App extends React.Component {
 
@@ -10,15 +9,38 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      result: '0' // the result is initially 0
+      result: '' // the result is initially 0
     };
 
     this.onClick = this.onClick.bind(this)
   }
 
-  onClick() {
+  calculate = () => {
+      this.setState({
+          // eslint-disable-next-line no-eval
+          result: (eval(this.state.result) || '') + ''
+      })
+  };
 
-  }
+  reset = () => {
+      this.setState({
+          result: ''
+      })
+  };
+
+  onClick = button => {
+    if(button === '=') {
+        this.calculate()
+    }
+    else if(button === 'AC') {
+        this.reset()
+    }
+    else {
+        this.setState({
+            result: this.state.result + button
+        })
+    }
+  };
 
   render() {
     return (
