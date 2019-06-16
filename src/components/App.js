@@ -3,13 +3,15 @@ import './App.css';
 import Result from './Result';
 import KeyPad from './KeyPad';
 
+const initResult = '0';
+
 class App extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            result: '' // the result is initially 0
+            result: initResult // the result is initially 0
         };
 
         this.onClick = this.onClick.bind(this)
@@ -33,32 +35,41 @@ class App extends React.Component {
     };
 
     reset = () => {
-        this.updateResult('')
+        this.updateResult(initResult)
     };
 
     // if invalid input, prompt error message and reset automatically after 1 second
     handleError = () => {
-        this.updateResult('invalid input!');
+        this.updateResult('Invalid input!');
         setTimeout(() => {
             this.reset()
         }, 1000)
     };
 
     onClick = button => {
-        if (button === '=') {
-            if (this.state.result === '') {
-                this.handleError()
-            } else {
-                this.calculate()
-            }
-        } else if (button === 'AC') {
-            this.reset()
-        } else if (button === 'CE') {
-            let newResult = this.state.result.slice(0, -1);
-            this.updateResult(newResult)
+        if (this.state.result === initResult  && button !== 'CE') {
+            this.reset();
+            this.updateResult(button)
         } else {
-            let newResult = this.state.result + button;
-            this.updateResult(newResult)
+            if (button === '=') {
+                if (this.state.result === '') {
+                    this.handleError()
+                } else {
+                    this.calculate()
+                }
+            } else if (button === 'AC') {
+                this.reset()
+            } else if (button === 'CE') {
+                if (this.state.result.length === 1) {
+                    this.reset()
+                } else {
+                    let newResult = this.state.result.slice(0, -1);
+                    this.updateResult(newResult)
+                }
+            } else {
+                let newResult = this.state.result + button;
+                this.updateResult(newResult)
+            }
         }
     };
 
