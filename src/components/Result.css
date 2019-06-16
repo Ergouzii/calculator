@@ -3,4 +3,14 @@
     height: 60px;
     font-weight: bold;
     font-size: 1.2em;
+    width: 120%;
+    background-color: white;
+    opacity: 0.9;
+    box-shadow: 3px 3px 3px -2px #000000;
+}
+
+@media (max-width: 450px) {
+    .result {
+        width: 90%;
+    }
 }

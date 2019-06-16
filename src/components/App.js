@@ -65,7 +65,6 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <h1>React Calculator</h1>
                 <div className="wrapper">
                     <Result result={this.state.result}/>
                     <KeyPad onClick={this.onClick}/>

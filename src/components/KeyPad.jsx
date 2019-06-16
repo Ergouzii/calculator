@@ -35,7 +35,7 @@ class KeyPad extends Component {
                     <button className={'button'} name={'9'} onClick={e => this.props.onClick(e.target.name)}> 9
                     </button>
                     <button className={'button'} name={'*'}
-                            onClick={e => this.props.onClick(e.target.name)}> *
+                            onClick={e => this.props.onClick(e.target.name)}> x
                     </button>
                 </div>
                 <div className={'row'}>
