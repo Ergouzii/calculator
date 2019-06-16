@@ -1,6 +1,14 @@
-.keypad {
-    font-size: 30px;
+.row {
+    display: flex;
 }
+
+.button {
+    border-radius: 10px;
+    margin: 3px 3px;
+    height: 50px;
+    width: 50px;
+}
+
 .operator {
     background-color: #fe9241;
     color: white;
