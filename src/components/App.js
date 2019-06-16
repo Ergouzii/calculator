@@ -32,7 +32,9 @@ class App extends React.Component {
 
     };
 
-    reset = () => {this.updateResult('')};
+    reset = () => {
+        this.updateResult('')
+    };
 
     // if invalid input, prompt error message and reset automatically after 1 second
     handleError = () => {
@@ -44,7 +46,11 @@ class App extends React.Component {
 
     onClick = button => {
         if (button === '=') {
-            this.calculate()
+            if (this.state.result === '') {
+                this.handleError()
+            } else {
+                this.calculate()
+            }
         } else if (button === 'AC') {
             this.reset()
         } else if (button === 'CE') {
