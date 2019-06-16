@@ -47,7 +47,7 @@ class App extends React.Component {
     };
 
     onClick = button => {
-        if (this.state.result === initResult  && button !== 'CE') {
+        if (this.state.result === initResult  && button !== 'CE'  && button !== 'AC') {
             this.reset();
             this.updateResult(button)
         } else {
