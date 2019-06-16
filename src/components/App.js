@@ -15,29 +15,28 @@ class App extends React.Component {
         this.onClick = this.onClick.bind(this)
     }
 
+    updateResult = newResult => {
+        this.setState({
+            result: newResult
+        })
+    };
+
     calculate = () => {
         try {
-            this.setState({
-                // eslint-disable-next-line no-eval
-                result: eval(this.state.result)
-            })
+            // eslint-disable-next-line no-eval
+            let newResult = eval(this.state.result);
+            this.updateResult(newResult)
         } catch (e) {
             this.handleError()
         }
 
     };
 
-    reset = () => {
-        this.setState({
-            result: ''
-        })
-    };
+    reset = () => {this.updateResult('')};
 
     // if invalid input, prompt error message and reset automatically after 1 second
     handleError = () => {
-        this.setState({
-            result: 'invalid input!'
-        });
+        this.updateResult('invalid input!');
         setTimeout(() => {
             this.reset()
         }, 1000)
@@ -49,13 +48,11 @@ class App extends React.Component {
         } else if (button === 'AC') {
             this.reset()
         } else if (button === 'CE') {
-            this.setState({
-                result: this.state.result.slice(0, -1)
-            })
+            let newResult = this.state.result.slice(0, -1);
+            this.updateResult(newResult)
         } else {
-            this.setState({
-                result: this.state.result + button
-            })
+            let newResult = this.state.result + button;
+            this.updateResult(newResult)
         }
     };
 
